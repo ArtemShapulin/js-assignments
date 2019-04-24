@@ -69,7 +69,7 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function extractNameFromTemplate(value) {
-    return value.slice(7, value.length -1)
+    return value.slice(7, -1)
 }
 
 
@@ -114,11 +114,7 @@ function removeLeadingAndTrailingWhitespaces(value) {
  *   'cat', 3 => 'catcatcat'
  */
 function repeatString(value, count) {
-    let tmp='';
-    for (let i = 0; i < count; i++) {
-        tmp += value;
-    }
-    return tmp;
+    return value.repeat(count)
 }
 
 /**
@@ -150,7 +146,7 @@ function removeFirstOccurrences(str, value) {
  *   '<a>' => 'a'
  */
 function unbracketTag(str) {
-    return str.slice(1, str.length -1)
+    return str.slice(1, -1)
 }
 
 
@@ -180,8 +176,7 @@ function convertToUpperCase(str) {
  */
 
 function extractEmails(str) {
-    let emailList = str.split(';');
-    return emailList;
+    return str.split(';')
 }
 
 /**
@@ -208,63 +203,22 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
+    const topLeft = '┌';
+    const topRight = '┐';
+    const bottonLeft = '└';
+    const bottomRight = '┘';
+    const middleLine = '│';
+    const stroke = '─';
 
-    let topStr = '';
-    let middleStr = '';
-    let bottomStr = '';
-    let finalStr = '';
-    let stroke = '─';
-    let fMiddleStr = '';
+    let str = `${topLeft}${stroke.repeat(width - 2)}${topRight}\n`;
 
-    if (height >= 2) {
-        for (let i = 0; i < width; i++) {
-            if (i === 0){
-                topStr += '┌';
-                bottomStr += '└';
-            }
-            else if (i === width -1){
-                topStr += '┐';
-                bottomStr += '┘';
-            }
-            else{
-                topStr += stroke;
-                bottomStr += stroke;
-            }
-        }
-
-        topStr = `${topStr}`;
-        bottomStr = `${bottomStr}`;
-
+    for (let i = 0; i < height - 2; i++) {
+        str += `${middleLine}${' '.repeat(width - 2)}${middleLine}\n`
     }
 
-    if (height > 2) {
-        for (let i = 0; i < width; i++) {
-            if (i === 0){
-                middleStr += '│';
-            }
-            else if (i === width -1){
-                middleStr += '│';
-            }
-            else{
-                middleStr += ' ';
-            }
-        }
+    str += `${bottonLeft}${stroke.repeat(width - 2)}${bottomRight}\n`;
 
-        middleStr = `${middleStr}`;
-        
-        for (let i = 0; i < height - 2; i++) {
-            fMiddleStr += `${middleStr}\n`;
-        }
-    }
-    
-    if(fMiddleStr === ''){
-        finalStr = `${topStr}\n${bottomStr}\n`;
-    }
-    else{
-        finalStr = `${topStr}\n${fMiddleStr}${bottomStr}\n`;
-    }
-    return finalStr;
-
+    return str
 }
 
 
