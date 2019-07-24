@@ -3,12 +3,14 @@
   "version": "0.9.1",
   "description": "JS training tasks",
   "scripts": {
+    "lint": "eslint",
     "test": "./node_modules/.bin/mocha",
     "test-debug": "./node_modules/.bin/mocha --debug-brk"
   },
   "author": "aorgish",
   "license": "MIT",
   "devDependencies": {
+    "eslint": "^6.1.0",
     "mocha": "^2.3.4"
   },
   "repository": {

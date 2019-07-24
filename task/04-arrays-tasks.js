@@ -270,8 +270,12 @@ function getSecondItems(arr) {
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
 function propagateItemsByPositionIndex(arr) {
-   
-   throw new Error('Not implemented');
+   let result = [];
+   arr.map((val,i) =>{
+      let resArr = Array.from({ length: ++i}, () => val);
+      result = result.concat(resArr);
+   })
+   return result
 }
 
 
@@ -289,7 +293,7 @@ function propagateItemsByPositionIndex(arr) {
  *   [ 10, 10, 10, 10 ] => [ 10, 10, 10 ]
  */
 function get3TopItems(arr) {
-   throw new Error('Not implemented');
+   return arr.sort((val1,val2) => val2 - val1).slice(0,3)
 }
  
  
@@ -307,7 +311,13 @@ function get3TopItems(arr) {
  *   [ 1, '2' ] => 1
  */
 function getPositivesCount(arr) {
-   throw new Error('Not implemented');
+   let res = 0;
+   arr.map((val) => {
+      if (val > 0 && typeof val == 'number'){
+         res++;
+      }
+   })
+   return res
 }
  
 /** 
@@ -340,7 +350,12 @@ function sortDigitNamesByNumericOrder(arr) {
  *   [ 1, 10, 100, 1000 ]  => 1111
  */
 function getItemsSum(arr) {
-   throw new Error('Not implemented');
+   if (arr.length === 0) {
+      return 0
+   }
+   else{
+      return arr.reduce( (pre,cur) => pre + cur)
+   }
 }
  
 /** 
@@ -356,7 +371,13 @@ function getItemsSum(arr) {
  *  [ null, undefined, NaN, false, 0, '' ]  => 6
  */
 function getFalsyValuesCount(arr) {
-   throw new Error('Not implemented');
+   let res = 0;
+   arr.map( (val) => {
+      if (!val){
+         res++;
+      }
+   })
+   return res
 }
 
 /**
@@ -374,7 +395,13 @@ function getFalsyValuesCount(arr) {
  *    [ true, 0, 1, 'true' ], true => 1
  */
 function findAllOccurences(arr, item) {
-   throw new Error('Not implemented');
+   let res = 0;
+   arr.reduce( (pre, cur) => {
+      if(cur == item){
+         res++
+      }
+   })
+   return res
 }
 
 /**
@@ -389,7 +416,7 @@ function findAllOccurences(arr, item) {
  *    ['rock', 'paper', 'scissors']     => 'rock,paper,scissors'
  */
 function toStringList(arr) {
-   throw new Error('Not implemented');
+   return arr.join(',')
 }
 
 
@@ -418,7 +445,15 @@ function toStringList(arr) {
  *      { country: 'Russia',  city: 'Saint Petersburg' }
  */
 function sortCitiesArray(arr) {
-   throw new Error('Not implemented');
+   return arr.sort(function (a, b) {
+      if (a.country > b.country) {
+        return 1;
+      }
+      if (a.country < b.country) {
+        return -1;
+      }
+      return 0;
+    })
 }
 
 /**
