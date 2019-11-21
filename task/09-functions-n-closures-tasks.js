@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 'use strict';
 
 /**********************************************************************************************
@@ -26,7 +27,7 @@
  *
  */
 function getComposition(f,g) {
-    throw new Error('Not implemented');
+   return (x) => f(g(x))
 }
 
 
@@ -47,7 +48,7 @@ function getComposition(f,g) {
  *
  */
 function getPowerFunction(exponent) {
-    throw new Error('Not implemented');
+    return (val) => Math.pow(val, exponent)
 }
 
 
@@ -65,6 +66,12 @@ function getPowerFunction(exponent) {
  *   getPolynom()      => null
  */
 function getPolynom() {
+    // if (arguments.length === 0) {
+    //     return () => null
+    // }
+    // for (let i = 0; i < arguments.length; i++) {
+        
+    // }
     throw new Error('Not implemented');
 }
 
@@ -84,7 +91,18 @@ function getPolynom() {
  *   memoizer() => the same random number  (next run, returns the previous cached result)
  */
 function memoize(func) {
-    throw new Error('Not implemented');
+    let cache = {}
+    return (...arg) =>{
+        let n = arg[0];
+        if(n in cache){
+            return cache[n]
+        }
+        else{
+            let res = func();
+            cache[n] = res;
+            return res;
+        }
+    }
 }
 
 
@@ -151,6 +169,7 @@ function logger(func, logFunc) {
  */
 function partialUsingArguments(fn) {
     throw new Error('Not implemented');
+ 
 }
 
 
@@ -171,7 +190,19 @@ function partialUsingArguments(fn) {
  *   getId10() => 11
  */
 function getIdGeneratorFunction(startFrom) {
-    throw new Error('Not implemented');
+    // throw new Error('Not implemented');
+    let cache = {}
+    return (...arg) =>{
+        let n = arg[0];
+        if(n in cache){
+            return ++startFrom
+        }
+        else{
+            let res = startFrom;
+            cache[n] = res;
+            return res;
+        }
+    }
 }
 
 
